@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>School Clubs</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <h1>School Clubs</h1>
+	<form method="POST" action="/">
+
+    <input type="text" name="search" placeholder="Enter club name">
+
+    <button type="submit">Search</button>
+<h2>Add a New Club</h2>
+
+<form method="POST" action="/">
+<!--create a form with a field for each piece of information stored in the database.-->
+<!--The "hidden" input tells Flask that this form is being used to add a club, rather than search for one. -->
+    <input type="hidden" name="action" value="add"> 
+
+    <label>Club Name:</label>
+    <input type="text" name="club_name">
+
+    <label>Club Type:</label>
+    <input type="text" name="club_type">
+
+    <label>Day:</label>
+    <input type="text" name="day">
+
+    <label>Time:</label>
+    <input type="text" name="time">
+
+    <label>Location:</label>
+    <input type="text" name="location">
+
+    <label>Club Leader:</label>
+    <input type="text" name="leader">
+
+    <label>Available Spaces:</label>
+    <input type="number" name="spaces">
+
+    <button type="submit">Add Club</button>
+
+<p>{{ message }}</p>
+</form>
+
+    {% for club in clubs %}
+	<div class="club">
+
+        <h2>{{ club[1] }}</h2>
+
+        <p>Type: {{ club[2] }}</p>
+        <p>Day: {{ club[3] }}</p>
+        <p>Time: {{ club[4] }}</p>
+        <p>Location: {{ club[5] }}</p>
+        <p>Leader: {{ club[6] }}</p>
+        <p>Spaces: {{ club[7] }}</p>
+
+        <hr>
+</div>
+    {% endfor %}
+
+</body>
+</html>
